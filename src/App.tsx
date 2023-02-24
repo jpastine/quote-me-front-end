@@ -1,5 +1,5 @@
 // npm modules 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import Quotes from './pages/Quotes/Quotes'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -15,17 +16,19 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as quoteService from './services/quoteService'
 
 // stylesheets
 import './App.css'
 
 // types
-import { User } from './types/models'
+import { User, Quote } from './types/models'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
   
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [quotes, setQuotes] = useState<Quote[]>([])
 
   const handleLogout = (): void => {
     authService.logout()
@@ -36,6 +39,18 @@ function App(): JSX.Element {
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
   }
+
+  useEffect((): void => {
+    const fetchQuotes =async (): Promise<void> => {
+      try {
+        const quoteData: Quote[] = await quoteService.getAllQuotes()
+        setQuotes(quoteData)  
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    user ? fetchQuotes : setQuotes([])
+  }, [user])
 
   return (
     <>
@@ -63,6 +78,14 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/quotes'
+          element={
+            <ProtectedRoute user={user}>
+              <Quotes quotes={quotes}/>
             </ProtectedRoute>
           }
         />
