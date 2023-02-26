@@ -10,6 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Quotes from './pages/Quotes/Quotes'
 
+
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
@@ -89,6 +90,11 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
+        {/* <Route 
+          path='/add-quote'
+          element={
+            <CreateQuote />
+          }/> */}
       </Routes>
     </>
   )

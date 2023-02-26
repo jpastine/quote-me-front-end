@@ -2,7 +2,7 @@
 export interface QuoteFormData {
   quote: string;
   author: string;
-  profileId: number;
+  
 }
 
 
