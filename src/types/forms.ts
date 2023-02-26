@@ -1,5 +1,9 @@
 /* ---------==== custom forms ====--------- */
-
+export interface QuoteFormData {
+  quote: string;
+  author: string;
+  profileId: number;
+}
 
 
 /* ---------===== auth forms =====--------- */

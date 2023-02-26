@@ -3,6 +3,7 @@ export interface Quote {
   quote: string;
   author: string;
   id: number;
+  profileId: number;
   createdAt: string;
   updatedAt: string;
 }

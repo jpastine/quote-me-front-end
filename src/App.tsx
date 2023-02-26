@@ -41,7 +41,7 @@ function App(): JSX.Element {
   }
 
   useEffect((): void => {
-    const fetchQuotes =async (): Promise<void> => {
+    const fetchQuotes = async (): Promise<void> => {
       try {
         const quoteData: Quote[] = await quoteService.getAllQuotes()
         setQuotes(quoteData)  
@@ -49,7 +49,7 @@ function App(): JSX.Element {
         console.log(error);
       }
     }
-    user ? fetchQuotes : setQuotes([])
+    user ? fetchQuotes() : setQuotes([])
   }, [user])
 
   return (
