@@ -11,7 +11,7 @@ type AddQuoteProps = {
 
 
 
-const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
+const EditQuoteForm = (props:AddQuoteProps): JSX.Element => {
   const navigate = useNavigate()
   
   const [formData, setFormData] = useState<QuoteFormData>({
@@ -31,7 +31,8 @@ const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
-      props.handleAddQuote(formData)
+      await quoteService.createQuote(formData)
+      navigate('/quotes')
     } catch (error) {
       throw error
     }
@@ -64,4 +65,4 @@ const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
   
 } 
 
-export default CreateQuoteForm
+export default EditQuoteForm

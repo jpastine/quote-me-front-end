@@ -26,6 +26,7 @@ import './App.css'
 // types
 import { User, Quote } from './types/models'
 import { QuoteFormData } from './types/forms'
+import EditQuoteForm from './pages/EditQuote/EditQuote'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
@@ -56,9 +57,17 @@ function App(): JSX.Element {
   }, [user])
 
   const handleAddQuote = async (quoteData: QuoteFormData): Promise<void> => {
+    console.log('this is running')
     const newQuote = await quoteService.createQuote(quoteData)
-    quotes.push(newQuote)
-    // setQuotes([newQuote, ...quotes])
+    // quotes.push(newQuote)
+    setQuotes([newQuote, ...quotes])
+    navigate('/quotes')
+  }
+
+  const handleEditQuote = async (quoteData: QuoteFormData): Promise<void> => {
+    const updatedQuote = await quoteService.editQuote(quoteData)
+    // quotes.push(newQuote)
+    setQuotes([updatedQuote, ...quotes])
     navigate('/quotes')
   }
 
@@ -103,6 +112,11 @@ function App(): JSX.Element {
           path='/add-quote'
           element={
             <AddQuote handleAddQuote={handleAddQuote} />
+          }/>
+        <Route 
+          path='/edit-quote'
+          element={
+            <EditQuoteForm handleAddQuote={handleEditQuote}/>
           }/>
       </Routes>
     </>

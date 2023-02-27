@@ -1,4 +1,5 @@
 import { Quote } from "../../types/models";
+import { Link } from "react-router-dom";
 
 interface QuoteCardProps {
   quote: Quote;
@@ -9,8 +10,9 @@ const QuoteCard = (props: QuoteCardProps): JSX.Element => {
   
   return (
     <article>
+      {/* <li><Link to={`/quotes/${id}`}>Edit</Link></li> */}
       <h1>{quote.quote}</h1>
-      <h3>{quote.author}</h3>
+      <p>{quote.author}</p>
     </article>
   )
 }
