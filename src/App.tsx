@@ -57,7 +57,8 @@ function App(): JSX.Element {
 
   const handleAddQuote = async (quoteData: QuoteFormData): Promise<void> => {
     const newQuote = await quoteService.createQuote(quoteData)
-    setQuotes([newQuote, ...quotes])
+    quotes.push(newQuote)
+    // setQuotes([newQuote, ...quotes])
     navigate('/quotes')
   }
 

@@ -17,6 +17,7 @@ const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
   const [formData, setFormData] = useState<QuoteFormData>({
     quote: '',
     author: '',
+    id: ''
   })
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
