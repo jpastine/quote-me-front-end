@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Quotes from './pages/Quotes/Quotes'
+import AddQuote from './pages/AddQuote/AddQuote'
 
 
 // components
@@ -24,6 +25,7 @@ import './App.css'
 
 // types
 import { User, Quote } from './types/models'
+import { QuoteFormData } from './types/forms'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
@@ -52,6 +54,12 @@ function App(): JSX.Element {
     }
     user ? fetchQuotes() : setQuotes([])
   }, [user])
+
+  const handleAddQuote = async (quoteData: QuoteFormData): Promise<void> => {
+    const newQuote = await quoteService.createQuote(quoteData)
+    setQuotes([newQuote, ...quotes])
+    navigate('/quotes')
+  }
 
   return (
     <>
@@ -90,11 +98,11 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        {/* <Route 
+        <Route 
           path='/add-quote'
           element={
-            <CreateQuote />
-          }/> */}
+            <AddQuote handleAddQuote={handleAddQuote} />
+          }/>
       </Routes>
     </>
   )
