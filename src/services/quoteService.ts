@@ -20,13 +20,14 @@ async function getAllQuotes(): Promise<Quote[]> {
 async function createQuote(quoteData:QuoteFormData): Promise<Quote> {
   try {
     const res = await fetch(BASE_URL, {
+      method: 'POST',
       headers: {
         'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(quoteData)
     })
-    return await res.json() as Quote
+    return await res.json()
   } catch (error) {
     throw error;
   }
