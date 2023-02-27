@@ -6,7 +6,7 @@ import * as quoteService from '../../services/quoteService'
 
 
 type AddQuoteProps = {
-  handleAddQuote: (quoteData: QuoteFormData) => void
+  handleEditQuote: (quoteData: QuoteFormData) => void
 }
 
 
@@ -31,7 +31,7 @@ const EditQuoteForm = (props:AddQuoteProps): JSX.Element => {
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
-      await quoteService.createQuote(formData)
+      props.handleEditQuote(formData)
       navigate('/quotes')
     } catch (error) {
       throw error
@@ -46,18 +46,19 @@ const EditQuoteForm = (props:AddQuoteProps): JSX.Element => {
     <main>
       <form onSubmit={handleSubmit}>
         <label>
-          Add a quote
+          Edit quote
         </label>
         <textarea 
           name="quote" 
           id="quote"
           onChange={handleTextAreaChange}
+          // value={formData.quote}
           >
 
         </textarea>
         <label>Author</label>
         <input type="text" name="author" onChange={handleInputChange}/>
-        <button type="submit">Add Quote</button>
+        <button type="submit">Save Quote</button>
       </form>
     </main>
     </>

@@ -114,9 +114,9 @@ function App(): JSX.Element {
             <AddQuote handleAddQuote={handleAddQuote} />
           }/>
         <Route 
-          path='/edit-quote'
+          path='/quotes/:id'
           element={
-            <EditQuoteForm handleAddQuote={handleEditQuote}/>
+            <EditQuoteForm handleEditQuote={handleEditQuote}/>
           }/>
       </Routes>
     </>
