@@ -10,7 +10,7 @@ const AddQuote = (props: AddQuoteProps) => {
     <>
       <h1>Add a New Quote</h1>
       <div>
-        <CreateQuoteForm />
+        <CreateQuoteForm handleAddQuote={props.handleAddQuote}/>
       </div>
     </>
   )

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { QuoteFormData } from "../../types/forms";
+import * as quoteService from '../../services/quoteService'
+import { useNavigate } from "react-router";
+
 
 type AddQuoteProps = {
   handleAddQuote: (quoteData: QuoteFormData) => void
@@ -7,7 +10,8 @@ type AddQuoteProps = {
 
 
 
-const CreateQuoteForm = (): JSX.Element => {
+const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
+  const navigate = useNavigate()
   
   const [formData, setFormData] = useState<QuoteFormData>({
     quote: '',
@@ -24,6 +28,12 @@ const CreateQuoteForm = (): JSX.Element => {
   
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
+    try {
+      await quoteService.createQuote(formData)
+      navigate('/quotes')
+    } catch (error) {
+      throw error
+    }
     
   }
 
@@ -42,6 +52,7 @@ const CreateQuoteForm = (): JSX.Element => {
           >
 
         </textarea>
+        <label>Author</label>
         <input type="text" name="author" onChange={handleInputChange}/>
         <button type="submit">Add Quote</button>
       </form>
