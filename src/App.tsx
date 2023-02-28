@@ -73,7 +73,7 @@ function App(): JSX.Element {
 
   const handleDeleteQuote = async (id:number): Promise<void> => {
     await quoteService.deleteQuote(id)
-    // setQuotes(...quotes)
+    setQuotes(quotes.filter(quote => quote.id !== id))
     navigate('/quotes')
   }
 
