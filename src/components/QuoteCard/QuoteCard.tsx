@@ -21,7 +21,7 @@ const QuoteCard = (props: QuoteCardProps, ): JSX.Element => {
     <article>
       {  props.user?.id === quote.profileId &&
         <>
-        <li><Link to={`/quotes/${quote.id}`}>Edit</Link></li>
+        <li><Link to={`/quotes/${quote.id}`} state={quote}>Edit</Link></li>
         <button onClick={()=> props.handleDeleteQuote(quote.id)}>X</button>
         </>
       }

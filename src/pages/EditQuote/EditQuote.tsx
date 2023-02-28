@@ -7,7 +7,7 @@ import * as quoteService from '../../services/quoteService'
 
 type EditQuoteProps = {
   handleEditQuote: (quoteData: QuoteFormData) => void;
-  quote: Quote
+  quote: Quote;
 }
 
 
@@ -16,14 +16,18 @@ const EditQuoteForm = (props:EditQuoteProps): JSX.Element => {
   const navigate = useNavigate()
   const { state } = useLocation()
   
-  console.log(props);
-  console.log(props.quote);
+  
+  console.log(state);
+  
   
   
   const [formData, setFormData] = useState<QuoteFormData>({
-    quote: props.quote.quote,
-    author: '',
-  })
+    quote: state.quote,
+    author: state.author,
+    id: state.id
+})
+  // console.log(QuoteFormData);
+  
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value});
@@ -54,6 +58,7 @@ const EditQuoteForm = (props:EditQuoteProps): JSX.Element => {
           Edit quote
         </label>
         <textarea 
+          
           name="quote" 
           id="quote"
           onChange={handleTextAreaChange}

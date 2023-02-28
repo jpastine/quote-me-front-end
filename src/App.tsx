@@ -68,8 +68,9 @@ function App(): JSX.Element {
 
   const handleEditQuote = async (quoteData: QuoteFormData): Promise<void> => {
     const updatedQuote = await quoteService.editQuote(quoteData)
-    // quotes.push(newQuote)
-    setQuotes([updatedQuote, ...quotes])
+    console.log(updatedQuote);
+    
+    setQuotes(quotes.map((q) => quoteData.id === q.id ? updatedQuote : q))
     navigate('/quotes')
   }
 
@@ -124,7 +125,7 @@ function App(): JSX.Element {
         <Route 
           path='/quotes/:id'
           element={
-            <EditQuoteForm handleEditQuote={handleEditQuote} quote={quotes} />
+            <EditQuoteForm handleEditQuote={handleEditQuote} quote={quotes}/>
           }/>
       </Routes>
     </>

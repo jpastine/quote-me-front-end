@@ -34,6 +34,8 @@ async function createQuote(quoteData:QuoteFormData): Promise<Quote> {
 }
 
 async function editQuote(quoteData: QuoteFormData): Promise<Quote> {
+  console.log(quoteData);
+  
   try {
     const res = await fetch(`${BASE_URL}/${quoteData.id}`, {
       method: 'PUT',
