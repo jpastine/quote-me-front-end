@@ -7,7 +7,7 @@ import * as quoteService from '../../services/quoteService'
 
 type EditQuoteProps = {
   handleEditQuote: (quoteData: QuoteFormData) => void;
-  quote: Quote;
+  
 }
 
 
@@ -26,7 +26,7 @@ const EditQuoteForm = (props:EditQuoteProps): JSX.Element => {
     author: state.author,
     id: state.id
 })
-  // console.log(QuoteFormData);
+  
   
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {

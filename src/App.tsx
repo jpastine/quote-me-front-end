@@ -125,7 +125,7 @@ function App(): JSX.Element {
         <Route 
           path='/quotes/:id'
           element={
-            <EditQuoteForm handleEditQuote={handleEditQuote} quote={quotes}/>
+            <EditQuoteForm handleEditQuote={handleEditQuote}/>
           }/>
       </Routes>
     </>
