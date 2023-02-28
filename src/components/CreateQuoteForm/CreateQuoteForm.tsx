@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { QuoteFormData } from "../../types/forms";
 import { useNavigate } from "react-router";
-import { Quote } from "../../types/models";
-import * as quoteService from '../../services/quoteService'
+
 
 
 type AddQuoteProps = {

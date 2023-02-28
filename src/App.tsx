@@ -24,7 +24,7 @@ import * as quoteService from './services/quoteService'
 import './App.css'
 
 // types
-import { User, Quote, Profile } from './types/models'
+import { User, Quote } from './types/models'
 import { QuoteFormData } from './types/forms'
 import EditQuoteForm from './pages/EditQuote/EditQuote'
 
@@ -61,15 +61,12 @@ function App(): JSX.Element {
   const handleAddQuote = async (quoteData: QuoteFormData): Promise<void> => {
     console.log('this is running')
     const newQuote = await quoteService.createQuote(quoteData)
-    // quotes.push(newQuote)
     setQuotes([newQuote, ...quotes])
     navigate('/quotes')
   }
 
   const handleEditQuote = async (quoteData: QuoteFormData): Promise<void> => {
     const updatedQuote = await quoteService.editQuote(quoteData)
-    console.log(updatedQuote);
-    
     setQuotes(quotes.map((q) => quoteData.id === q.id ? updatedQuote : q))
     navigate('/quotes')
   }
@@ -120,12 +117,16 @@ function App(): JSX.Element {
         <Route 
           path='/add-quote'
           element={
-            <AddQuote handleAddQuote={handleAddQuote} />
+            <ProtectedRoute user={user}>
+              <AddQuote handleAddQuote={handleAddQuote} />
+            </ProtectedRoute>
           }/>
         <Route 
           path='/quotes/:id'
           element={
-            <EditQuoteForm handleEditQuote={handleEditQuote}/>
+            <ProtectedRoute user={user}>
+              <EditQuoteForm handleEditQuote={handleEditQuote}/>
+            </ProtectedRoute>
           }/>
       </Routes>
     </>

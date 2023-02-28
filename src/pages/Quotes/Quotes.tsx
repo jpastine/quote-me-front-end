@@ -2,8 +2,7 @@
 import { Quote } from '../../types/models'
 import { User } from '../../types/models';
 import QuoteCard from '../../components/QuoteCard/QuoteCard'
-import { QuoteFormData } from '../../types/forms';
-import { Profile } from '../../types/models';
+
 
 interface QuotesProps {
   quotes: Quote[];
