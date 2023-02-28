@@ -1,12 +1,15 @@
 // types
 import { Quote } from '../../types/models'
-
+import { User } from '../../types/models';
 import QuoteCard from '../../components/QuoteCard/QuoteCard'
 import { QuoteFormData } from '../../types/forms';
+import { Profile } from '../../types/models';
 
 interface QuotesProps {
   quotes: Quote[];
-  handleDeleteQuote: (id: number) => void
+  handleDeleteQuote: (id: number) => void;
+  user: User | null;
+  
 }
 
 const Quotes = (props: QuotesProps): JSX.Element => {
@@ -17,7 +20,7 @@ const Quotes = (props: QuotesProps): JSX.Element => {
   return (
     <main>
       {props.quotes.map((quote: Quote) =>
-        <QuoteCard key={quote.id} quote={quote} handleDeleteQuote={props.handleDeleteQuote}/>
+        <QuoteCard key={quote.id} quote={quote} handleDeleteQuote={props.handleDeleteQuote} user={props.user} />
       )}
     </main>
   )

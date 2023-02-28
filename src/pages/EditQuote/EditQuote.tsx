@@ -1,23 +1,28 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { QuoteFormData } from "../../types/forms";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { Quote } from "../../types/models";
 import * as quoteService from '../../services/quoteService'
 
 
-type AddQuoteProps = {
-  handleEditQuote: (quoteData: QuoteFormData) => void
+type EditQuoteProps = {
+  handleEditQuote: (quoteData: QuoteFormData) => void;
+  quote: Quote
 }
 
 
 
-const EditQuoteForm = (props:AddQuoteProps): JSX.Element => {
+const EditQuoteForm = (props:EditQuoteProps): JSX.Element => {
   const navigate = useNavigate()
+  const { state } = useLocation()
+  
+  console.log(props);
+  console.log(props.quote);
+  
   
   const [formData, setFormData] = useState<QuoteFormData>({
-    quote: '',
+    quote: props.quote.quote,
     author: '',
-    
   })
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,12 +57,12 @@ const EditQuoteForm = (props:AddQuoteProps): JSX.Element => {
           name="quote" 
           id="quote"
           onChange={handleTextAreaChange}
-          // value={formData.quote}
+          value={formData.quote}
           >
 
         </textarea>
         <label>Author</label>
-        <input type="text" name="author" onChange={handleInputChange}/>
+        <input type="text" name="author" value={formData.author} onChange={handleInputChange}/>
         <button type="submit">Save Quote</button>
       </form>
     </main>

@@ -24,15 +24,17 @@ import * as quoteService from './services/quoteService'
 import './App.css'
 
 // types
-import { User, Quote } from './types/models'
+import { User, Quote, Profile } from './types/models'
 import { QuoteFormData } from './types/forms'
 import EditQuoteForm from './pages/EditQuote/EditQuote'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
   
+  
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [quotes, setQuotes] = useState<Quote[]>([])
+  
 
   const handleLogout = (): void => {
     authService.logout()
@@ -110,7 +112,7 @@ function App(): JSX.Element {
           path='/quotes'
           element={
             <ProtectedRoute user={user}>
-              <Quotes quotes={quotes} handleDeleteQuote={handleDeleteQuote}/>
+              <Quotes quotes={quotes} handleDeleteQuote={handleDeleteQuote} user={user}/>
             </ProtectedRoute>
           }
         />
@@ -122,7 +124,7 @@ function App(): JSX.Element {
         <Route 
           path='/quotes/:id'
           element={
-            <EditQuoteForm handleEditQuote={handleEditQuote}/>
+            <EditQuoteForm handleEditQuote={handleEditQuote} quote={quotes} />
           }/>
       </Routes>
     </>
