@@ -71,6 +71,12 @@ function App(): JSX.Element {
     navigate('/quotes')
   }
 
+  const handleDeleteQuote = async (id:number): Promise<void> => {
+    await quoteService.deleteQuote(id)
+    // setQuotes(...quotes)
+    navigate('/quotes')
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -104,7 +110,7 @@ function App(): JSX.Element {
           path='/quotes'
           element={
             <ProtectedRoute user={user}>
-              <Quotes quotes={quotes}/>
+              <Quotes quotes={quotes} handleDeleteQuote={handleDeleteQuote}/>
             </ProtectedRoute>
           }
         />

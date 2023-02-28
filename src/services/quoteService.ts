@@ -49,8 +49,24 @@ async function editQuote(quoteData: QuoteFormData): Promise<Quote> {
   }
 }
 
+async function deleteQuote(id: number): Promise<void> {
+  console.log('this is working');
+  
+  try {
+    await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
 export {
   getAllQuotes,
   createQuote,
-  editQuote
+  editQuote,
+  deleteQuote
 }
