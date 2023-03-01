@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { QuoteFormData } from "../../types/forms";
 import { useNavigate } from "react-router";
-
+import styles from './CreateQuoteForm.module.css'
 
 
 type AddQuoteProps = {
@@ -42,7 +42,7 @@ const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
   return (
     <>
     <main>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label>
           Add a quote
         </label>
@@ -55,7 +55,7 @@ const CreateQuoteForm = (props:AddQuoteProps): JSX.Element => {
         </textarea>
         <label>Author</label>
         <input type="text" name="author" onChange={handleInputChange}/>
-        <button type="submit">Add Quote</button>
+        <button type="submit" className={styles.button}>Add Quote</button>
       </form>
     </main>
     </>
