@@ -24,7 +24,7 @@ const EditQuoteForm = (props:EditQuoteProps): JSX.Element => {
   const [formData, setFormData] = useState<QuoteFormData>({
     quote: state.quote,
     author: state.author,
-    id: state.id
+    id: state.id,
 })
   
   

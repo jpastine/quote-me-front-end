@@ -1,9 +1,7 @@
 import { Quote } from "../../types/models";
-import { Link } from "react-router-dom";
-import { QuoteFormData } from "../../types/forms";
-import * as quoteService from '../../services/quoteService' 
+import { Link } from "react-router-dom"; 
 import { User } from "../../types/models";
-import { Profile } from "../../types/models";
+
 
 interface QuoteCardProps {
   quote: Quote;
@@ -20,10 +18,10 @@ const QuoteCard = (props: QuoteCardProps, ): JSX.Element => {
   return (
     <article>
       {  props.user?.id === quote.profileId &&
-        <>
-        <li><Link to={`/quotes/${quote.id}`} state={quote}>Edit</Link></li>
-        <button onClick={()=> props.handleDeleteQuote(quote.id)}>X</button>
-        </>
+        <div>
+          <li><Link to={`/quotes/${quote.id}`} state={quote}>Edit</Link></li>
+          <button onClick={()=> props.handleDeleteQuote(quote.id)}>X</button>
+        </div>
       }
       <h1>{quote.quote}</h1>
       <p>{quote.author}</p>
