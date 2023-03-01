@@ -20,7 +20,7 @@ const QuoteCard = (props: QuoteCardProps, ): JSX.Element => {
       {  props.user?.id === quote.profileId &&
         <div className={styles.div}>
           <Link to={`/quotes/${quote.id}`} state={quote}>Edit</Link>
-          <button onClick={()=> props.handleDeleteQuote(quote.id)}>X</button>
+          <button className={styles.button} onClick={()=> props.handleDeleteQuote(quote.id)}>X</button>
         </div>
       }
       <h1>{quote.quote}</h1>

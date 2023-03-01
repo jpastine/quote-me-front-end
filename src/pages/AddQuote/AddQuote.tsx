@@ -1,5 +1,6 @@
 import { QuoteFormData } from "../../types/forms"
 import CreateQuoteForm from "../../components/CreateQuoteForm/CreateQuoteForm"
+import styles from './AddQuote.module.css'
 
 type AddQuoteProps = {
   handleAddQuote: (quoteData: QuoteFormData) => void
@@ -7,12 +8,12 @@ type AddQuoteProps = {
 
 const AddQuote = (props: AddQuoteProps) => {
   return (
-    <>
-      <h1>Add a New Quote</h1>
+    <main>
+      
       <div>
         <CreateQuoteForm handleAddQuote={props.handleAddQuote}/>
       </div>
-    </>
+    </main>
   )
 }
 

@@ -11,3 +11,9 @@ article {
   justify-content: space-between;
   flex-direction: column;
 }
+
+.button {
+  border-radius: 20px;
+  color: red;
+  
+}
