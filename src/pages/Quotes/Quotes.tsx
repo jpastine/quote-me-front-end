@@ -2,6 +2,7 @@
 import { Quote } from '../../types/models'
 import { User } from '../../types/models';
 import QuoteCard from '../../components/QuoteCard/QuoteCard'
+import styles from './Quotes.module.css'
 
 
 interface QuotesProps {
@@ -17,7 +18,7 @@ const Quotes = (props: QuotesProps): JSX.Element => {
   if(!props.quotes.length) return <p>No quotes yet</p>
 
   return (
-    <main>
+    <main className={styles.container}>
       {props.quotes.map((quote: Quote) =>
         <QuoteCard key={quote.id} quote={quote} handleDeleteQuote={props.handleDeleteQuote} user={props.user} />
       )}
