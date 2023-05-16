@@ -34,8 +34,18 @@ const NavBar = (props: NavBarProps): JSX.Element => {
         </ul>
       :
         <ul>
+          <div className='container'>
+            <div className='left'>
+              <li id='title'>QuoteMe</li>
+            </div>
+            <div className='right'>
           <li><NavLink to="/login">Log In</NavLink></li>
           <li><NavLink to="/signup">Sign Up</NavLink></li>
+
+            </div>
+            
+
+          </div>
         </ul>
       }
     </nav>
