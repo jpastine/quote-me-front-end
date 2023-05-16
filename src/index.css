@@ -177,6 +177,13 @@ nav img {
   width: 50px;
 }
 
+#title {
+  font-family: 'Ysabeau', sans-serif;
+  color: purple;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
 nav .right{
   margin: 0;
   width: 100%;
