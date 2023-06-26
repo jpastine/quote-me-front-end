@@ -6,9 +6,19 @@
   align-items: center;
   margin-right: 0;
 }
-
+  
 .button {
   background-color: white;
-  height: 20px;
+  height: 25px;
   border-radius: 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: purple;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0px 5px 0px;
 }
